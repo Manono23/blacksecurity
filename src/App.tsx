@@ -34,53 +34,59 @@ const COLORS = {
 const services = [
   {
     id: 'close-protection',
-    title: 'Close Protection Detail',
-    description: 'Elite personal security for high-profile individuals and executives. Tier-1 vetted tactical personnel.',
+    title: 'Executive Protection',
+    description: 'Tier-1 personal security for high-profile executives and VIPs across South African provinces.',
+    detail: 'Our bodyguards are highly trained in defensive driving, threat assessment, and emergency evacuation. We provide 24/7 covert or overt protection detail tailored to specific risk profiles.',
     icon: UserCheck,
-    image: 'https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1582845572886-372138290ba5?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: 'asset-recovery',
-    title: 'Tactical Asset Recovery',
-    description: 'Mission-critical recovery and secure transport of high-value assets and sensitive documents.',
+    title: 'Cash-In-Transit & Recovery',
+    description: 'Secure transport of high-value assets and rapid tactical recovery of stolen property.',
+    detail: 'Equipped with armored vehicles and GPS tracking, our transit teams ensure the safe passage of currency and sensitive documents. Our recovery unit specializes in cross-border tracking and neutralization.',
     icon: Lock,
-    image: 'https://images.unsplash.com/photo-1541888941259-79018440939d?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1579333079373-3f1406854728?auto=format&fit=crop&q=80&w=800'
   },
   {
-    id: 'maritime-security',
-    title: 'Maritime Security Ops',
-    description: 'Anti-piracy and vessel protection units deployed in high-risk international waters and ports.',
+    id: 'farm-protection',
+    title: 'Agricultural Defense',
+    description: 'Specialized farm protection units for remote agricultural sites in the Eastern Cape.',
+    detail: 'Protecting livelihoods from stock theft and trespassing. Our units use thermal imaging and K9 teams to secure vast perimeters in rural Indwe, Elliot, and surrounding areas.',
     icon: ShieldAlert,
-    image: 'https://images.unsplash.com/photo-1621252179027-94459d278660?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1509633289644-84610f63ea17?auto=format&fit=crop&q=80&w=800'
   },
   {
-    id: 'infrastructure-defense',
-    title: 'Infrastructure Defense',
-    description: 'Specialized guarding for power plants, data centers, and critical industrial hubs.',
+    id: 'estate-security',
+    title: 'Residential Estate Guarding',
+    description: 'High-end access control and perimeter patrols for gated communities and estates.',
+    detail: 'We provide specialized solutions for high-value residential estates. Our services include biometric access control, 24/7 armed response vehicle patrols, and control room monitoring.',
     icon: Shield,
     image: 'https://images.unsplash.com/photo-1558285514-2746f58f2c8e?auto=format&fit=crop&q=80&w=800'
   },
   {
-    id: 'rapid-response',
-    title: 'Strike Team Deployment',
-    description: 'High-intensity rapid intervention units for containment and neutralization of imminent threats.',
-    icon: Clock,
-    image: 'https://images.unsplash.com/photo-1509633289644-84610f63ea17?auto=format&fit=crop&q=80&w=800'
-  },
-  {
-    id: 'intel-surveillance',
-    title: 'Tactical Intel & Recon',
-    description: 'Advanced surveillance systems integrated with proactive intelligence for preemptive defense.',
-    icon: Eye,
-    image: 'https://images.unsplash.com/photo-1551808195-2342898c6928?auto=format&fit=crop&q=80&w=800'
+    id: 'event-security',
+    title: 'VIP Event Escorts',
+    description: 'Crowd management and high-profile security for major events and conferences.',
+    detail: 'From corporate conferences to public festivals, we manage entry points and provide VIP protection within the venue. Our operatives are trained in de-escalation and emergency response.',
+    icon: Users,
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=800'
   }
 ];
 
 const stats = [
   { label: 'Guard Response', value: 'Instant' },
   { label: 'Operational Success', value: '100%' },
-  { label: 'Tactical Units', value: '250+' },
-  { label: 'Global Coverage', value: '24/7' }
+  { label: 'Tactical Units', value: '50' },
+  { label: 'Provinces Covered', value: '9/9' }
+];
+
+const LOCATIONS = [
+  { name: 'Dordrecht', type: 'Headquarters', coords: 'EC-01' },
+  { name: 'Indwe', type: 'Field Base', coords: 'EC-02' },
+  { name: 'Queenstown', type: 'Response Hub', coords: 'EC-03' },
+  { name: 'Elliot', type: 'Tactical Post', coords: 'EC-04' },
+  { name: 'East London', type: 'Logistics Center', coords: 'EC-05' }
 ];
 
 const Logo = ({ className = "w-16 h-16" }: { className?: string }) => (
@@ -141,12 +147,17 @@ const Logo = ({ className = "w-16 h-16" }: { className?: string }) => (
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeTab, setActiveTab] = useState(services[0].id);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const handleCall = () => {
+    window.location.href = 'tel:+270750870303';
+  };
 
   return (
     <div className="min-h-screen font-sans" style={{ backgroundColor: COLORS.bg, color: COLORS.text }}>
@@ -170,18 +181,21 @@ export default function App() {
           </div>
 
           <div className="hidden md:flex items-center gap-10">
-            {['Services', 'Operations'].map((item) => (
+            {['Services', 'Operations', 'Areas'].map((item) => (
               <a 
                 key={item} 
                 href={`#${item.toLowerCase()}`} 
                 className={`text-[10px] font-black tracking-[0.3em] uppercase transition-colors ${
-                  item === 'Services' ? 'text-black' : 'text-zinc-400 hover:text-black'
+                  scrolled ? 'text-zinc-600 hover:text-black' : 'text-zinc-400 hover:text-black'
                 }`}
               >
                 {item}
               </a>
             ))}
-            <button className="bg-black hover:bg-zinc-800 text-white px-6 py-2 rounded-sm text-[10px] font-black tracking-widest transition-all">
+            <button 
+              onClick={handleCall}
+              className="bg-black hover:bg-zinc-800 text-white px-6 py-2 rounded-sm text-[10px] font-black tracking-widest transition-all"
+            >
               SECURE NOW
             </button>
           </div>
@@ -252,22 +266,22 @@ export default function App() {
               <span className="text-zinc-300">PROTECTION.</span>
             </h1>
             <p className="text-zinc-600 text-lg md:text-xl mb-12 leading-relaxed font-medium max-w-3xl">
-              Black Hawk Armed Security delivers mission-critical defense strategies for high-stakes assets and executive personnel. 
-              Deploying elite tactical units across the globe.
+              Found in Dordrecht, Eastern Cape in 2026. We pride ourselves on delivering elite armed security 
+              services to all provinces across South Africa with 50 dedicated tactical units.
             </p>
             <div className="flex flex-col sm:flex-row gap-6">
-              <a 
-                href="tel:+27664289612"
+              <button 
+                onClick={handleCall}
                 className="group bg-black hover:bg-zinc-800 text-white px-12 py-6 rounded-xl font-black transition-all flex items-center justify-center gap-4 text-xs tracking-[0.2em] uppercase"
               >
                 DEPLOY TACTICAL UNIT
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </a>
+              </button>
               <a 
-                href="#operations"
+                href="#areas"
                 className="border border-zinc-200 hover:border-black hover:bg-black/5 text-black px-12 py-6 rounded-xl font-bold transition-all uppercase tracking-[0.2em] text-[10px] flex items-center justify-center"
               >
-                VIEW OPERATIONS
+                BROWSE LOCATIONS
               </a>
             </div>
           </motion.div>
@@ -346,13 +360,13 @@ export default function App() {
                   <div className="h-[1px] w-full bg-zinc-100" />
                   <div className="flex items-center justify-between">
                     <service.icon className="w-8 h-8 text-black/20" />
-                    <a 
-                      href="tel:+27664289612"
+                    <button 
+                      onClick={handleCall}
                       className="bg-black text-white text-[10px] font-black uppercase tracking-[0.2em] px-6 py-4 rounded-xl hover:bg-zinc-800 transition-all flex items-center gap-2"
                     >
-                      CONTACT US
+                      CALL TACTICAL HUB
                       <ChevronRight className="w-3 h-3" />
-                    </a>
+                    </button>
                   </div>
                 </div>
               </div>
@@ -420,50 +434,149 @@ export default function App() {
         </div>
       </section>
 
-      {/* Trust / About Section */}
-      <section id="operations" className="py-32">
-        <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-24 items-center">
-          <div className="relative group">
-            <div className="aspect-square rounded-[3rem] bg-zinc-300/50 flex items-center justify-center p-1 overflow-hidden">
-               <img 
-                src="https://images.unsplash.com/photo-1541888941259-79018440939d?auto=format&fit=crop&q=80&w=800"
-                alt="Tactical HQ"
-                className="w-full h-full object-cover rounded-[2.9rem] grayscale group-hover:grayscale-0 transition-all duration-1000"
-                referrerPolicy="no-referrer"
-              />
+      {/* Service Areas Section */}
+      <section id="areas" className="py-32 bg-white scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.5em] mb-4">Regional Presence</h2>
+              <h3 className="text-5xl font-bold mb-8 tracking-tighter uppercase">Eastern Cape <span className="text-zinc-300">Hubs.</span></h3>
+              <p className="text-zinc-600 mb-12 leading-relaxed">
+                Headquartered in Dordrecht, our influence extends across the Eastern Cape province. 
+                Our response hubs are strategically placed to ensure minimum response times in Elliot, Queenstown, and beyond.
+              </p>
+              <div className="space-y-4">
+                {LOCATIONS.map((loc, i) => (
+                  <div key={loc.name} className="flex items-center justify-between p-6 bg-zinc-50 rounded-2xl border border-zinc-100 hover:border-black transition-all group">
+                    <div className="flex items-center gap-4">
+                      <div className="w-10 h-10 rounded-full bg-black flex items-center justify-center text-white text-[10px] font-black">
+                        {i + 1}
+                      </div>
+                      <div>
+                        <div className="font-bold uppercase tracking-tight">{loc.name}</div>
+                        <div className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">{loc.type}</div>
+                      </div>
+                    </div>
+                    <MapPin className="w-5 h-5 text-zinc-200 group-hover:text-black transition-colors" />
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="absolute -bottom-10 -right-10 bg-black p-12 rounded-[2rem] shadow-2xl">
-              <Logo className="w-20 h-20 mb-4 bg-white border-zinc-950" />
-              <div className="text-[10px] font-black text-zinc-500 uppercase tracking-widest mb-1">Status</div>
-              <div className="text-2xl font-bold text-white tracking-tight leading-none uppercase">Combat Ready</div>
+            
+            <div className="relative aspect-square">
+              {/* Abstract Map Visual */}
+              <div className="absolute inset-0 bg-zinc-100 rounded-[3rem] overflow-hidden border border-zinc-200 p-8">
+                 <div className="w-full h-full relative opacity-20">
+                    <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-black/20" strokeWidth="0.5">
+                       <path d="M10,20 Q40,10 60,30 T90,50" />
+                       <path d="M20,80 Q50,70 80,90" />
+                       <path d="M15,40 Q45,60 75,40" />
+                    </svg>
+                 </div>
+                 {/* Hotspots */}
+                 {[
+                   { t: '20%', l: '30%', n: 'Dordrecht' },
+                   { t: '40%', l: '60%', n: 'Indwe' },
+                   { t: '70%', l: '40%', n: 'Elliot' },
+                   { t: '50%', l: '20%', n: 'Queenstown' },
+                   { t: '80%', l: '70%', n: 'East London' }
+                 ].map((spot) => (
+                   <div 
+                    key={spot.n}
+                    className="absolute" 
+                    style={{ top: spot.t, left: spot.l }}
+                   >
+                     <div className="w-3 h-3 bg-black rounded-full animate-pulse" />
+                     <div className="absolute top-4 left-0 bg-white border border-zinc-200 px-3 py-1 rounded-md text-[10px] font-black uppercase tracking-widest shadow-xl pointer-events-none whitespace-nowrap">
+                       {spot.n}
+                     </div>
+                   </div>
+                 ))}
+                 
+                 <div className="absolute bottom-8 left-8 right-8 bg-black/5 backdrop-blur-sm p-8 rounded-3xl border border-black/5">
+                    <div className="text-black font-serif italic text-xl mb-2">"Dominating the Eastern Cape perimeter."</div>
+                    <div className="text-[10px] font-black tracking-widest uppercase text-zinc-500">Service Coverage Map</div>
+                 </div>
+              </div>
             </div>
           </div>
+        </div>
+      </section>
 
-          <div>
-            <h2 className="text-[11px] font-black text-zinc-400 uppercase tracking-[0.5em] mb-4">Precision Standard</h2>
-            <h3 className="text-5xl md:text-7xl font-bold mb-8 leading-none tracking-tighter uppercase text-black">
-              The Black Hawk <br /><span className="text-zinc-300">Protocol.</span>
-            </h3>
-            <p className="text-zinc-600 text-lg mb-10 leading-relaxed font-medium">
-              We operate at the intersection of elite military training and advanced surveillance intelligence. 
-              Every mission is executed with clinical precision and absolute discretion.
-            </p>
-            <div className="grid grid-cols-2 gap-8 mb-12">
-              {[
-                { label: 'Recruitment', val: 'Vetted Elite' },
-                { label: 'Technology', val: 'AI-Integrated' },
-                { label: 'Response', val: 'Instantaneous' },
-                { label: 'Global', val: '24/7 Coverage' }
-              ].map((item) => (
-                <div key={item.label} className="border-l-2 border-zinc-200 pl-6">
-                  <div className="text-[10px] font-black text-zinc-400 uppercase tracking-widest mb-1">{item.label}</div>
-                  <div className="text-lg font-bold text-black uppercase tracking-tight">{item.val}</div>
-                </div>
-              ))}
+      {/* Trust / About Section */}
+      <section id="operations" className="py-32 scroll-mt-20">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col items-center text-center mb-20">
+            <h2 className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.5em] mb-4">Intelligence & Strategy</h2>
+            <h3 className="text-5xl md:text-7xl font-bold tracking-tighter uppercase">Operations <span className="text-zinc-300">Briefing.</span></h3>
+          </div>
+
+          <div className="bg-white border border-zinc-200 rounded-[3rem] overflow-hidden shadow-sm flex flex-col md:flex-row min-h-[600px]">
+            {/* Tabs List */}
+            <div className="md:w-1/3 border-r border-zinc-100 p-8 flex flex-col justify-between">
+              <div className="space-y-4">
+                {services.map((s) => (
+                  <button 
+                    key={s.id}
+                    onClick={() => setActiveTab(s.id)}
+                    className={`w-full text-left p-6 rounded-2xl transition-all flex items-center justify-between group ${
+                      activeTab === s.id ? 'bg-black text-white' : 'hover:bg-zinc-50'
+                    }`}
+                  >
+                    <div className="flex flex-col">
+                      <span className="text-[10px] font-black uppercase tracking-widest mb-1 opacity-50">Operational Class</span>
+                      <span className="font-bold uppercase tracking-tight">{s.title}</span>
+                    </div>
+                    <s.icon className={`w-5 h-5 ${activeTab === s.id ? 'text-white' : 'text-zinc-200 group-hover:text-black'}`} />
+                  </button>
+                ))}
+              </div>
+              
+              <div className="p-6 bg-zinc-50 rounded-2xl mt-8">
+                <p className="text-[11px] font-bold text-zinc-500 uppercase tracking-widest leading-relaxed">
+                  Founded in Dordrecht (2026), our operational protocols are built on military-grade discipline.
+                </p>
+              </div>
             </div>
-            <button className="bg-black text-white px-12 py-6 rounded-xl font-black hover:bg-zinc-800 transition-all tracking-widest text-xs uppercase shadow-lg shadow-black/10">
-              Operational Briefing
-            </button>
+
+            {/* Tab Detail content */}
+            <div className="flex-1 p-12 lg:p-20 relative flex flex-col justify-between">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeTab}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="flex flex-col h-full"
+                >
+                  <div className="max-w-2xl">
+                    <div className="text-[10px] font-black text-zinc-400 uppercase tracking-[0.3em] mb-6">Service Overview</div>
+                    <h4 className="text-4xl lg:text-6xl font-bold tracking-tighter uppercase mb-8 leading-none">
+                      {services.find(s => s.id === activeTab)?.title}
+                    </h4>
+                    <p className="text-zinc-600 text-lg lg:text-xl font-medium leading-relaxed mb-12">
+                      {services.find(s => s.id === activeTab)?.detail}
+                    </p>
+                  </div>
+                  
+                  <div className="mt-auto grid grid-cols-2 gap-12 pt-12 border-t border-zinc-100">
+                    <div className="flex flex-col gap-2">
+                       <span className="text-[10px] font-black text-zinc-400 uppercase tracking-widest">Deployment Status</span>
+                       <span className="text-black font-bold uppercase flex items-center gap-2">
+                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                        Available for Tasking
+                       </span>
+                    </div>
+                    <button 
+                      onClick={handleCall}
+                      className="bg-black text-white p-6 rounded-2xl font-black uppercase tracking-widest text-[10px] hover:bg-zinc-800 transition-all"
+                    >
+                      REQUEST BRIEFING
+                    </button>
+                  </div>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
         </div>
       </section>
@@ -481,19 +594,29 @@ export default function App() {
                 <span className="text-[8px] font-black tracking-[0.5em] text-zinc-400 uppercase">Precision Protection</span>
               </div>
             </div>
-            <div className="flex gap-12">
-              {['Privacy', 'Legal', 'Careers', 'Intel'].map((item) => (
-                <a key={item} href="#" className="text-zinc-400 text-[10px] font-black uppercase hover:text-black transition-colors tracking-widest">
-                  {item}
+            <div className="flex flex-col md:flex-row gap-12">
+              <div className="flex flex-col gap-4">
+                <a href="tel:+270750870303" className="text-zinc-400 text-[10px] font-black uppercase hover:text-black transition-colors tracking-widest flex items-center gap-2">
+                  <Phone className="w-3 h-3" /> +27 075 087 0303
                 </a>
-              ))}
+                <a href="mailto:blackhawk.security@gmail.com" className="text-zinc-400 text-[10px] font-black uppercase hover:text-black transition-colors tracking-widest flex items-center gap-2">
+                  <Eye className="w-3 h-3" /> blackhawk.security@gmail.com
+                </a>
+              </div>
+              <div className="flex gap-12">
+                {['Privacy', 'Legal', 'Careers', 'Audit'].map((item) => (
+                  <a key={item} href="#" className="text-zinc-400 text-[10px] font-black uppercase hover:text-black transition-colors tracking-widest">
+                    {item}
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
           <div className="flex flex-col md:flex-row justify-between text-zinc-300 text-[10px] font-mono uppercase tracking-[0.3em] border-t border-zinc-50 pt-12">
             <div>&copy; {new Date().getFullYear()} Black Hawk Armed Security. All Rights Reserved.</div>
             <div className="flex gap-8 mt-4 md:mt-0">
-              <span className="text-zinc-400">UN CLASS: 04 DEFENSE</span>
-              <span className="text-zinc-400">EST. 2004</span>
+              <span className="text-zinc-400">HQ: Dordrecht, EC</span>
+              <span className="text-zinc-400">EST. 2026</span>
             </div>
           </div>
         </div>
