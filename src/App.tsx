@@ -33,44 +33,52 @@ const COLORS = {
 
 const services = [
   {
-    id: 'close-protection',
-    title: 'Executive Protection',
-    description: 'Tier-1 personal security for high-profile executives and VIPs across South African provinces.',
-    detail: 'Our bodyguards are highly trained in defensive driving, threat assessment, and emergency evacuation. We provide 24/7 covert or overt protection detail tailored to specific risk profiles.',
+    id: 'executive-protection',
+    title: 'VIP Protection & Escort',
+    description: 'Elite personal security and secure escort for high-profile residents and visitors.',
+    detail: 'Our bodyguards are highly trained in defensive driving and threat assessment. We provide 24/7 protection detail for VIPs, ensuring safe transit throughout the Eastern Cape and beyond.',
     icon: UserCheck,
     image: 'https://images.unsplash.com/photo-1582845572886-372138290ba5?auto=format&fit=crop&q=80&w=800'
   },
   {
-    id: 'asset-recovery',
-    title: 'Cash-In-Transit & Recovery',
-    description: 'Secure transport of high-value assets and rapid tactical recovery of stolen property.',
-    detail: 'Equipped with armored vehicles and GPS tracking, our transit teams ensure the safe passage of currency and sensitive documents. Our recovery unit specializes in cross-border tracking and neutralization.',
-    icon: Lock,
-    image: 'https://images.unsplash.com/photo-1579333079373-3f1406854728?auto=format&fit=crop&q=80&w=800'
-  },
-  {
-    id: 'farm-protection',
-    title: 'Agricultural Defense',
-    description: 'Specialized farm protection units for remote agricultural sites in the Eastern Cape.',
-    detail: 'Protecting livelihoods from stock theft and trespassing. Our units use thermal imaging and K9 teams to secure vast perimeters in rural Indwe, Elliot, and surrounding areas.',
+    id: 'farm-guarding',
+    title: 'Farm Guarding',
+    description: 'Specialized agricultural defense for remote farms in Indwe, Elliot, and Dordrecht.',
+    detail: 'We pride ourselves on protecting farmers and livestock. Our units use thermal imaging and night-vision to secure vast perimeters against stock theft and trespassing.',
     icon: ShieldAlert,
     image: 'https://images.unsplash.com/photo-1509633289644-84610f63ea17?auto=format&fit=crop&q=80&w=800'
   },
   {
-    id: 'estate-security',
-    title: 'Residential Estate Guarding',
-    description: 'High-end access control and perimeter patrols for gated communities and estates.',
-    detail: 'We provide specialized solutions for high-value residential estates. Our services include biometric access control, 24/7 armed response vehicle patrols, and control room monitoring.',
-    icon: Shield,
-    image: 'https://images.unsplash.com/photo-1558285514-2746f58f2c8e?auto=format&fit=crop&q=80&w=800'
+    id: 'tracking-devices',
+    title: 'Tactical Tracking Devices',
+    description: 'Advanced GPS and IoT tracking solutions for assets and vehicle fleets.',
+    detail: 'Complete fleet management and asset tracking. We install tamper-proof recovery devices with 24/7 monitoring from our Dordrecht control room.',
+    icon: Lock,
+    image: 'https://images.unsplash.com/photo-1579333079373-3f1406854728?auto=format&fit=crop&q=80&w=800'
   },
   {
-    id: 'event-security',
-    title: 'VIP Event Escorts',
-    description: 'Crowd management and high-profile security for major events and conferences.',
-    detail: 'From corporate conferences to public festivals, we manage entry points and provide VIP protection within the venue. Our operatives are trained in de-escalation and emergency response.',
+    id: 'retail-security',
+    title: 'Shop & Local Security',
+    description: 'Vigilant guarding for retail stores and local community patrol initiatives.',
+    detail: 'From shoplifting prevention to neighborhood watch support, we provide a visible and effective deterrent. We deliver our services to all provinces to ensure community safety.',
+    icon: Shield,
+    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800'
+  },
+  {
+    id: 'cctv-surveillance',
+    title: 'CCTV & Digital Footage',
+    description: 'Professional surveillance installation and 24/7 video monitoring services.',
+    detail: 'State-of-the-art CCTV systems with remote access. Our operations team provides reviewed footage for evidence and real-time intervention.',
+    icon: Eye,
+    image: 'https://images.unsplash.com/photo-1551808195-2342898c6928?auto=format&fit=crop&q=80&w=800'
+  },
+  {
+    id: 'fugitive-apprehension',
+    title: 'Fugitive Apprehension Unit',
+    description: 'Specialized unit tasked with locating and capturing high-priority wanted individuals.',
+    detail: 'Working within the legal framework of SA, our most-wanted division uses intelligence and field tactical units to locate individuals evading justice.',
     icon: Users,
-    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1506377711776-dbdc2f3c20d9?auto=format&fit=crop&q=80&w=800'
   }
 ];
 
@@ -82,11 +90,11 @@ const stats = [
 ];
 
 const LOCATIONS = [
-  { name: 'Dordrecht', type: 'Headquarters', coords: 'EC-01' },
-  { name: 'Indwe', type: 'Field Base', coords: 'EC-02' },
-  { name: 'Queenstown', type: 'Response Hub', coords: 'EC-03' },
-  { name: 'Elliot', type: 'Tactical Post', coords: 'EC-04' },
-  { name: 'East London', type: 'Logistics Center', coords: 'EC-05' }
+  { name: 'Dordrecht', type: 'Tactical HQ', x: 45, y: 35 },
+  { name: 'Indwe', type: 'Security Outpost', x: 55, y: 38 },
+  { name: 'Elliot', type: 'Field Response', x: 65, y: 35 },
+  { name: 'Queenstown', type: 'Regional Hub', x: 40, y: 55 },
+  { name: 'East London', type: 'Logistics Center', x: 50, y: 85 }
 ];
 
 const Logo = ({ className = "w-16 h-16" }: { className?: string }) => (
@@ -148,6 +156,7 @@ export default function App() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeTab, setActiveTab] = useState(services[0].id);
+  const [activeModal, setActiveModal] = useState<null | 'privacy' | 'legal'>(null);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
@@ -214,7 +223,7 @@ export default function App() {
               exit={{ opacity: 0, y: -20 }}
               className="absolute top-full left-0 w-full bg-white border-b border-zinc-200 p-8 flex flex-col gap-6 md:hidden shadow-xl"
             >
-              {['Services', 'Operations'].map((item) => (
+              {['Services', 'Operations', 'Areas'].map((item) => (
                 <a 
                   key={item} 
                   href={`#${item.toLowerCase()}`}
@@ -224,7 +233,10 @@ export default function App() {
                   {item}
                 </a>
               ))}
-              <button className="bg-black text-white py-4 rounded-lg font-black text-xs tracking-widest">
+              <button 
+                onClick={handleCall}
+                className="bg-black text-white py-4 rounded-lg font-black text-xs tracking-widest"
+              >
                 SECURE NOW
               </button>
             </motion.div>
@@ -464,38 +476,34 @@ export default function App() {
             </div>
             
             <div className="relative aspect-square">
-              {/* Abstract Map Visual */}
-              <div className="absolute inset-0 bg-zinc-100 rounded-[3rem] overflow-hidden border border-zinc-200 p-8">
-                 <div className="w-full h-full relative opacity-20">
-                    <svg viewBox="0 0 100 100" className="w-full h-full fill-none stroke-black/20" strokeWidth="0.5">
-                       <path d="M10,20 Q40,10 60,30 T90,50" />
-                       <path d="M20,80 Q50,70 80,90" />
-                       <path d="M15,40 Q45,60 75,40" />
-                    </svg>
-                 </div>
-                 {/* Hotspots */}
-                 {[
-                   { t: '20%', l: '30%', n: 'Dordrecht' },
-                   { t: '40%', l: '60%', n: 'Indwe' },
-                   { t: '70%', l: '40%', n: 'Elliot' },
-                   { t: '50%', l: '20%', n: 'Queenstown' },
-                   { t: '80%', l: '70%', n: 'East London' }
-                 ].map((spot) => (
+              <div className="absolute inset-0 bg-zinc-900 rounded-[3rem] overflow-hidden border border-zinc-800 p-4">
+                 {/* Realistic Eastern Cape SVG Outline */}
+                 <svg viewBox="0 0 400 400" className="w-full h-full fill-white/5 stroke-white/20" strokeWidth="1">
+                    {/* Simplified Eastern Cape Coast and Borders */}
+                    <path d="M100,50 L300,50 L350,150 L380,300 L250,380 L150,390 L50,300 L20,150 Z" />
+                    <path d="M380,300 Q300,320 250,380" className="stroke-red-500/20" strokeWidth="2" />
+                 </svg>
+                 
+                 {/* Tactical Red Pins */}
+                 {LOCATIONS.map((spot) => (
                    <div 
-                    key={spot.n}
-                    className="absolute" 
-                    style={{ top: spot.t, left: spot.l }}
+                    key={spot.name}
+                    className="absolute z-10 -translate-x-1/2 -translate-y-1/2 group/pin" 
+                    style={{ top: `${spot.y}%`, left: `${spot.x}%` }}
                    >
-                     <div className="w-3 h-3 bg-black rounded-full animate-pulse" />
-                     <div className="absolute top-4 left-0 bg-white border border-zinc-200 px-3 py-1 rounded-md text-[10px] font-black uppercase tracking-widest shadow-xl pointer-events-none whitespace-nowrap">
-                       {spot.n}
+                     <div className="relative">
+                        <div className="w-4 h-4 bg-red-600 rounded-full border-2 border-white shadow-lg animate-pulse" />
+                        <div className="absolute top-0 left-0 w-4 h-4 bg-red-600 rounded-full animate-ping opacity-75" />
+                     </div>
+                     <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-black/90 border border-zinc-700 px-3 py-1 rounded shadow-2xl opacity-0 group-hover/pin:opacity-100 transition-all pointer-events-none whitespace-nowrap">
+                       <div className="text-[10px] font-black uppercase text-white">{spot.name}</div>
                      </div>
                    </div>
                  ))}
                  
-                 <div className="absolute bottom-8 left-8 right-8 bg-black/5 backdrop-blur-sm p-8 rounded-3xl border border-black/5">
-                    <div className="text-black font-serif italic text-xl mb-2">"Dominating the Eastern Cape perimeter."</div>
-                    <div className="text-[10px] font-black tracking-widest uppercase text-zinc-500">Service Coverage Map</div>
+                 <div className="absolute bottom-6 left-6 right-6 bg-black/80 backdrop-blur-md p-6 rounded-2xl border border-white/5">
+                    <div className="text-white font-bold text-lg mb-1">Eastern Cape Force Presence</div>
+                    <div className="text-[10px] font-black tracking-widest uppercase text-red-500">5 Active Tactical Hubs</div>
                  </div>
               </div>
             </div>
@@ -604,11 +612,21 @@ export default function App() {
                 </a>
               </div>
               <div className="flex gap-12">
-                {['Privacy', 'Legal', 'Careers', 'Audit'].map((item) => (
-                  <a key={item} href="#" className="text-zinc-400 text-[10px] font-black uppercase hover:text-black transition-colors tracking-widest">
-                    {item}
-                  </a>
-                ))}
+                <button 
+                  onClick={() => setActiveModal('privacy')} 
+                  className="text-zinc-400 text-[10px] font-black uppercase hover:text-black transition-colors tracking-widest cursor-pointer"
+                >
+                  Privacy
+                </button>
+                <button 
+                  onClick={() => setActiveModal('legal')} 
+                  className="text-zinc-400 text-[10px] font-black uppercase hover:text-black transition-colors tracking-widest cursor-pointer"
+                >
+                  Legal
+                </button>
+                <a href="#" className="text-zinc-400 text-[10px] font-black uppercase hover:text-black transition-colors tracking-widest">
+                  Audit
+                </a>
               </div>
             </div>
           </div>
@@ -621,6 +639,78 @@ export default function App() {
           </div>
         </div>
       </footer>
+
+      {/* Modal System */}
+      <AnimatePresence>
+        {activeModal && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-6">
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setActiveModal(null)}
+              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+            />
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              className="relative w-full max-w-2xl bg-white rounded-[2.5rem] p-12 overflow-hidden shadow-2xl"
+            >
+              <button 
+                onClick={() => setActiveModal(null)}
+                className="absolute top-8 right-8 text-zinc-400 hover:text-black transition-colors"
+              >
+                <X className="w-6 h-6" />
+              </button>
+
+              <div className="text-[10px] font-black text-red-500 uppercase tracking-[0.4em] mb-4">Official Document</div>
+              <h3 className="text-4xl font-bold tracking-tighter uppercase mb-10">
+                {activeModal === 'privacy' ? 'Privacy Policy' : 'Legal Compliance'}
+              </h3>
+
+              <div className="prose prose-sm prose-zinc max-h-[400px] overflow-y-auto pr-6 custom-scrollbar">
+                {activeModal === 'privacy' ? (
+                  <div className="space-y-6 text-zinc-600 font-medium leading-relaxed">
+                    <p><strong>Compliance with POPIA:</strong> Black Hawk Armed Security is fully committed to the Protection of Personal Information Act. We handle all client data with absolute discretion and tactical integrity.</p>
+                    <div className="space-y-4 pt-4 border-t border-zinc-100">
+                      <h4 className="font-bold uppercase tracking-widest text-black text-[10px]">1. Data Collection</h4>
+                      <p>We specifically collect information required for tactical response, deployment logistics, and legal guarding mandates. This includes location data and operational contacts.</p>
+                      
+                      <h4 className="font-bold uppercase tracking-widest text-black text-[10px]">2. Surveillance Integrity</h4>
+                      <p>Surveillance footage and digital evidence are stored for a maximum of 30 days. After this period, data is securely purged unless flagged for active legal proceedings or police investigation.</p>
+                      
+                      <h4 className="font-bold uppercase tracking-widest text-black text-[10px]">3. Intel Security</h4>
+                      <p>Operational intel is restricted to Tier-1 personnel only. We never share client profiles or tactical vulnerabilities with third-party organizations.</p>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="space-y-6 text-zinc-600 font-medium leading-relaxed">
+                    <p><strong>South African Regulatory Framework:</strong> As a leading Eastern Cape security firm, we operate under the strictest legal mandates of the Republic of South Africa.</p>
+                    <div className="space-y-4 pt-4 border-t border-zinc-100">
+                      <h4 className="font-bold uppercase tracking-widest text-black text-[10px]">1. PSiRA Act (56 of 2001)</h4>
+                      <p>Fully registered and vetted by the Private Security Industry Regulation Authority. Every operative maintains current registration and tactical grading.</p>
+                      
+                      <h4 className="font-bold uppercase tracking-widest text-black text-[10px]">2. Firearms Control Act (60 of 2000)</h4>
+                      <p>All weapons used by our tactical units are licensed for business use. Personnel undergo mandatory bi-annual competency testing.</p>
+                      
+                      <h4 className="font-bold uppercase tracking-widest text-black text-[10px]">3. Power of Arrest</h4>
+                      <p>Our units operate under the Criminal Procedure Act 51 of 1977, specifically regarding citizen arrest and the protection of life and property.</p>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <button 
+                onClick={() => setActiveModal(null)}
+                className="mt-12 w-full bg-black text-white p-6 rounded-2xl font-black uppercase tracking-widest text-[10px] hover:bg-zinc-800 transition-all shadow-xl shadow-black/10"
+              >
+                ACKNOWLEDGE & CLOSE
+              </button>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
