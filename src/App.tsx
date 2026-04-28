@@ -38,7 +38,7 @@ const services = [
     description: 'Elite personal security and secure escort for high-profile residents and visitors.',
     detail: 'Our bodyguards are highly trained in defensive driving and threat assessment. We provide 24/7 protection detail for VIPs, ensuring safe transit throughout the Eastern Cape and beyond.',
     icon: UserCheck,
-    image: 'https://images.unsplash.com/photo-1541888941259-79018440939d?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1544027993-37dbfe43562a?q=80&w=800'
   },
   {
     id: 'farm-guarding',
@@ -46,7 +46,7 @@ const services = [
     description: 'Specialized agricultural defense for remote farms in Indwe, Elliot, and Dordrecht.',
     detail: 'We pride ourselves on protecting farmers and livestock. Our units use thermal imaging and night-vision to secure vast perimeters against stock theft and trespassing.',
     icon: ShieldAlert,
-    image: 'https://images.unsplash.com/photo-1582845572886-372138290ba5?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?q=80&w=800'
   },
   {
     id: 'tracking-devices',
@@ -54,7 +54,7 @@ const services = [
     description: 'Advanced GPS and IoT tracking solutions for assets and vehicle fleets.',
     detail: 'Complete fleet management and asset tracking. We install tamper-proof recovery devices with 24/7 monitoring from our Dordrecht control room.',
     icon: Lock,
-    image: 'https://images.unsplash.com/photo-1557597774-9d2739f85a76?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=800'
   },
   {
     id: 'retail-security',
@@ -62,7 +62,7 @@ const services = [
     description: 'Vigilant guarding for retail stores and local community patrol initiatives.',
     detail: 'From shoplifting prevention to neighborhood watch support, we provide a visible and effective deterrent. We deliver our services to all provinces to ensure community safety.',
     icon: Shield,
-    image: 'https://images.unsplash.com/photo-1506377711776-dbdc2f3c20d9?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800'
   },
   {
     id: 'cctv-surveillance',
@@ -70,7 +70,7 @@ const services = [
     description: 'Professional surveillance installation and 24/7 video monitoring services.',
     detail: 'State-of-the-art CCTV systems with remote access. Our operations team provides reviewed footage for evidence and real-time intervention.',
     icon: Eye,
-    image: 'https://images.unsplash.com/photo-1557597774-9d2739f85a76?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1551808195-2342898c6928?q=80&w=800'
   },
   {
     id: 'fugitive-apprehension',
@@ -78,7 +78,7 @@ const services = [
     description: 'Specialized unit tasked with locating and capturing high-priority wanted individuals.',
     detail: 'Working within the legal framework of SA, our most-wanted division uses intelligence and field tactical units to locate individuals evading justice.',
     icon: Users,
-    image: 'https://images.unsplash.com/photo-1579333079373-3f1406854728?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1506377711776-dbdc2f3c20d9?q=80&w=800'
   }
 ];
 
@@ -90,11 +90,26 @@ const stats = [
 ];
 
 const LOCATIONS = [
-  { name: 'Dordrecht', type: 'Tactical HQ', x: 45, y: 35 },
-  { name: 'Indwe', type: 'Security Outpost', x: 55, y: 38 },
-  { name: 'Elliot', type: 'Field Response', x: 65, y: 35 },
-  { name: 'Queenstown', type: 'Regional Hub', x: 40, y: 55 },
-  { name: 'East London', type: 'Logistics Center', x: 50, y: 85 }
+  { name: 'Dordrecht', type: 'Tactical HQ', x: 48, y: 32 },
+  { name: 'Queenstown', type: 'Regional Hub', x: 42, y: 52 },
+  { name: 'East London', type: 'Logistics Center', x: 52, y: 88 },
+  { name: 'Cradock', type: 'Western Command', x: 18, y: 35 },
+  { name: 'Stutterheim', type: 'Operational Base', x: 48, y: 72 },
+  { name: 'Butterworth', type: 'Transit Security', x: 74, y: 65 },
+  { name: 'Engcobo', type: 'Northern Post', x: 72, y: 42 },
+  { name: 'Bhisho', type: 'Government Detail', x: 45, y: 84 },
+  { name: 'Cathcart', type: 'Rapid Response', x: 46, y: 62 },
+  { name: 'Barkly East', type: 'Border Security', x: 68, y: 15 },
+  { name: 'Tarkastad', type: 'Valley Guard', x: 32, y: 45 },
+  { name: 'Sada', type: 'Township Patrol', x: 40, y: 58 },
+  { name: 'Bedford', type: 'Rural Defense', x: 26, y: 78 },
+  { name: 'Somerset East', type: 'Southern Command', x: 14, y: 82 },
+  { name: 'Fort Beaufort', type: 'Historic Guard', x: 35, y: 75 },
+  { name: 'Elliot', type: 'Mountain Fleet', x: 65, y: 35 },
+  { name: 'Indwe', type: 'Mining Security', x: 55, y: 38 },
+  { name: 'Seymour', type: 'Pass Control', x: 40, y: 72 },
+  { name: 'Emalahleni', type: 'Energy Guard', x: 54, y: 25 },
+  { name: 'Alice', type: 'Edu-Watch', x: 32, y: 82 }
 ];
 
 const Logo = ({ className = "w-16 h-16" }: { className?: string }) => (
@@ -248,12 +263,12 @@ export default function App() {
       <section className="relative h-screen flex items-center overflow-hidden">
         <div className="absolute inset-0 z-0">
           <img 
-            src="https://images.unsplash.com/photo-1541888941259-79018440939d?auto=format&fit=crop&q=80&w=1920" 
+            src="https://images.unsplash.com/photo-1502472545331-dc19097e06af?q=80&w=1920" 
             alt="Security Team"
-            className="w-full h-full object-cover opacity-10 grayscale"
+            className="w-full h-full object-cover bg-zinc-800"
             referrerPolicy="no-referrer"
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent" />
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 w-full mt-24">
@@ -343,12 +358,13 @@ export default function App() {
               className="group relative bg-white border border-zinc-200 rounded-[2.5rem] flex flex-col transition-all duration-300 shadow-sm hover:shadow-2xl hover:border-black overflow-hidden"
             >
               {/* Visible Image Header */}
-              <div className="h-64 h-64 overflow-hidden relative">
+              <div className="h-64 overflow-hidden relative bg-zinc-100">
                 <img 
                   src={service.image} 
                   alt={service.title}
-                  className="w-full h-full object-cover grayscale brightness-90 group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700"
+                  className="w-full h-full object-cover group-hover:scale-110 transition-all duration-700"
                   referrerPolicy="no-referrer"
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />
                 <div className="absolute bottom-6 left-8">
@@ -403,11 +419,11 @@ export default function App() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 h-auto md:h-[600px]">
-             <div className="md:col-span-2 relative overflow-hidden rounded-[2.5rem] group h-[300px] md:h-full">
+             <div className="md:col-span-2 relative overflow-hidden rounded-[2.5rem] group h-[300px] md:h-full bg-zinc-200">
                <img 
-                 src="https://images.unsplash.com/photo-1541888941259-79018440939d?auto=format&fit=crop&q=80&w=1200" 
+                 src="https://images.unsplash.com/photo-1539533397341-392ef4c99e19?q=80&w=1200" 
                  alt="Tactical Response Vehicle" 
-                 className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                 className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000"
                  referrerPolicy="no-referrer"
                />
                <div className="absolute bottom-10 left-10 text-white">
@@ -415,29 +431,29 @@ export default function App() {
                  <div className="text-2xl font-bold uppercase tracking-tight">Armored Response Unit</div>
                </div>
              </div>
-             <div className="md:col-span-1 relative overflow-hidden rounded-[2.5rem] group h-[300px] md:h-full">
+             <div className="md:col-span-1 relative overflow-hidden rounded-[2.5rem] group h-[300px] md:h-full bg-zinc-200">
                <img 
-                 src="https://images.unsplash.com/photo-1582845572886-372138290ba5?auto=format&fit=crop&q=80&w=600" 
+                 src="https://images.unsplash.com/photo-1506377711776-dbdc2f3c20d9?q=80&w=600" 
                  alt="Field Operatives" 
-                 className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                 className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000"
                  referrerPolicy="no-referrer"
                />
-               <div className="absolute inset-0 bg-black/40 group-hover:opacity-0 transition-opacity" />
+               <div className="absolute inset-0 bg-black/10 group-hover:opacity-0 transition-opacity" />
              </div>
              <div className="md:col-span-1 grid grid-rows-2 gap-6 h-[600px] md:h-full">
-               <div className="relative overflow-hidden rounded-[2.5rem] group">
+               <div className="relative overflow-hidden rounded-[2.5rem] group bg-zinc-200">
                  <img 
-                   src="https://images.unsplash.com/photo-1557597774-9d2739f85a76?auto=format&fit=crop&q=80&w=600" 
+                   src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b?q=80&w=600" 
                    alt="Night Recon" 
-                   className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                   className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000"
                    referrerPolicy="no-referrer"
                  />
                </div>
-               <div className="relative overflow-hidden rounded-[2.5rem] group">
+               <div className="relative overflow-hidden rounded-[2.5rem] group bg-zinc-200">
                  <img 
-                   src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?auto=format&fit=crop&q=80&w=600" 
+                   src="https://images.unsplash.com/photo-1551808195-2342898c6928?q=80&w=600" 
                    alt="Advanced Surveillance" 
-                   className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                   className="w-full h-full object-cover group-hover:scale-105 transition-all duration-1000"
                    referrerPolicy="no-referrer"
                  />
                </div>
@@ -455,9 +471,9 @@ export default function App() {
               <h3 className="text-5xl font-bold mb-8 tracking-tighter uppercase">Eastern Cape <span className="text-zinc-300">Hubs.</span></h3>
               <p className="text-zinc-600 mb-12 leading-relaxed">
                 Headquartered in Dordrecht, our influence extends across the Eastern Cape province. 
-                Our response hubs are strategically placed to ensure minimum response times in Elliot, Queenstown, and beyond.
+                Our response hubs are strategically placed to ensure minimum response times in Cradock, Butterworth, Stutterheim, and Queenstown.
               </p>
-              <div className="space-y-4">
+              <div className="space-y-3 max-h-[500px] overflow-y-auto pr-4 custom-scrollbar">
                 {LOCATIONS.map((loc, i) => (
                   <div key={loc.name} className="flex items-center justify-between p-6 bg-zinc-50 rounded-2xl border border-zinc-100 hover:border-black transition-all group">
                     <div className="flex items-center gap-4">
@@ -495,7 +511,7 @@ export default function App() {
                         <div className="w-4 h-4 bg-red-600 rounded-full border-2 border-white shadow-lg animate-pulse" />
                         <div className="absolute top-0 left-0 w-4 h-4 bg-red-600 rounded-full animate-ping opacity-75" />
                      </div>
-                     <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-black/90 border border-zinc-700 px-3 py-1 rounded shadow-2xl opacity-0 group-hover/pin:opacity-100 transition-all pointer-events-none whitespace-nowrap">
+                     <div className="absolute top-6 left-1/2 -translate-x-1/2 bg-black/90 border border-zinc-700 px-3 py-1 rounded shadow-2xl opacity-0 group-hover/pin:opacity-100 transition-all pointer-events-none z-20">
                        <div className="text-[10px] font-black uppercase text-white">{spot.name}</div>
                      </div>
                    </div>
@@ -503,7 +519,7 @@ export default function App() {
                  
                  <div className="absolute bottom-6 left-6 right-6 bg-black/80 backdrop-blur-md p-6 rounded-2xl border border-white/5">
                     <div className="text-white font-bold text-lg mb-1">Eastern Cape Force Presence</div>
-                    <div className="text-[10px] font-black tracking-widest uppercase text-red-500">5 Active Tactical Hubs</div>
+                    <div className="text-[10px] font-black tracking-widest uppercase text-red-500">20 Active Tactical Hubs</div>
                  </div>
               </div>
             </div>
