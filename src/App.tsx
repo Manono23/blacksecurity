@@ -38,7 +38,7 @@ const services = [
     description: 'Elite personal security and secure escort for high-profile residents and visitors.',
     detail: 'Our bodyguards are highly trained in defensive driving and threat assessment. We provide 24/7 protection detail for VIPs, ensuring safe transit throughout the Eastern Cape and beyond.',
     icon: UserCheck,
-    image: 'https://images.unsplash.com/photo-1582845572886-372138290ba5?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1541888941259-79018440939d?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: 'farm-guarding',
@@ -46,7 +46,7 @@ const services = [
     description: 'Specialized agricultural defense for remote farms in Indwe, Elliot, and Dordrecht.',
     detail: 'We pride ourselves on protecting farmers and livestock. Our units use thermal imaging and night-vision to secure vast perimeters against stock theft and trespassing.',
     icon: ShieldAlert,
-    image: 'https://images.unsplash.com/photo-1509633289644-84610f63ea17?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1582845572886-372138290ba5?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: 'tracking-devices',
@@ -54,7 +54,7 @@ const services = [
     description: 'Advanced GPS and IoT tracking solutions for assets and vehicle fleets.',
     detail: 'Complete fleet management and asset tracking. We install tamper-proof recovery devices with 24/7 monitoring from our Dordrecht control room.',
     icon: Lock,
-    image: 'https://images.unsplash.com/photo-1579333079373-3f1406854728?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1557597774-9d2739f85a76?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: 'retail-security',
@@ -62,7 +62,7 @@ const services = [
     description: 'Vigilant guarding for retail stores and local community patrol initiatives.',
     detail: 'From shoplifting prevention to neighborhood watch support, we provide a visible and effective deterrent. We deliver our services to all provinces to ensure community safety.',
     icon: Shield,
-    image: 'https://images.unsplash.com/photo-1560518883-ce09059eeffa?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1506377711776-dbdc2f3c20d9?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: 'cctv-surveillance',
@@ -70,7 +70,7 @@ const services = [
     description: 'Professional surveillance installation and 24/7 video monitoring services.',
     detail: 'State-of-the-art CCTV systems with remote access. Our operations team provides reviewed footage for evidence and real-time intervention.',
     icon: Eye,
-    image: 'https://images.unsplash.com/photo-1551808195-2342898c6928?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1557597774-9d2739f85a76?auto=format&fit=crop&q=80&w=800'
   },
   {
     id: 'fugitive-apprehension',
@@ -78,7 +78,7 @@ const services = [
     description: 'Specialized unit tasked with locating and capturing high-priority wanted individuals.',
     detail: 'Working within the legal framework of SA, our most-wanted division uses intelligence and field tactical units to locate individuals evading justice.',
     icon: Users,
-    image: 'https://images.unsplash.com/photo-1506377711776-dbdc2f3c20d9?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1579333079373-3f1406854728?auto=format&fit=crop&q=80&w=800'
   }
 ];
 
@@ -403,46 +403,46 @@ export default function App() {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6 h-auto md:h-[600px]">
-            <div className="md:col-span-2 relative overflow-hidden rounded-[2.5rem] group h-[300px] md:h-full">
-              <img 
-                src="https://images.unsplash.com/photo-1541888941259-79018440939d?auto=format&fit=crop&q=80&w=1200" 
-                alt="Tactical Response Vehicle" 
-                className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute bottom-10 left-10 text-white">
-                <div className="text-[10px] font-black uppercase tracking-widest mb-2">Fleet: Vulcan</div>
-                <div className="text-2xl font-bold uppercase tracking-tight">Armored Response Unit</div>
-              </div>
-            </div>
-            <div className="md:col-span-1 relative overflow-hidden rounded-[2.5rem] group h-[300px] md:h-full">
-              <img 
-                src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?auto=format&fit=crop&q=80&w=600" 
-                alt="Field Operatives" 
-                className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
-                referrerPolicy="no-referrer"
-              />
-              <div className="absolute inset-0 bg-black/40 group-hover:opacity-0 transition-opacity" />
-            </div>
-            <div className="md:col-span-1 grid grid-rows-2 gap-6 h-[600px] md:h-full">
-              <div className="relative overflow-hidden rounded-[2.5rem] group">
-                <img 
-                  src="https://images.unsplash.com/photo-1551808195-2342898c6928?auto=format&fit=crop&q=80&w=600" 
-                  alt="Night Recon" 
-                  className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-              <div className="relative overflow-hidden rounded-[2.5rem] group">
-                <img 
-                  src="https://images.unsplash.com/photo-1581447100595-37f09c693fdc?auto=format&fit=crop&q=80&w=600" 
-                  alt="Advanced Surveillance" 
-                  className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
-                  referrerPolicy="no-referrer"
-                />
-              </div>
-            </div>
-          </div>
+             <div className="md:col-span-2 relative overflow-hidden rounded-[2.5rem] group h-[300px] md:h-full">
+               <img 
+                 src="https://images.unsplash.com/photo-1541888941259-79018440939d?auto=format&fit=crop&q=80&w=1200" 
+                 alt="Tactical Response Vehicle" 
+                 className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                 referrerPolicy="no-referrer"
+               />
+               <div className="absolute bottom-10 left-10 text-white">
+                 <div className="text-[10px] font-black uppercase tracking-widest mb-2">Fleet: Vulcan</div>
+                 <div className="text-2xl font-bold uppercase tracking-tight">Armored Response Unit</div>
+               </div>
+             </div>
+             <div className="md:col-span-1 relative overflow-hidden rounded-[2.5rem] group h-[300px] md:h-full">
+               <img 
+                 src="https://images.unsplash.com/photo-1582845572886-372138290ba5?auto=format&fit=crop&q=80&w=600" 
+                 alt="Field Operatives" 
+                 className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                 referrerPolicy="no-referrer"
+               />
+               <div className="absolute inset-0 bg-black/40 group-hover:opacity-0 transition-opacity" />
+             </div>
+             <div className="md:col-span-1 grid grid-rows-2 gap-6 h-[600px] md:h-full">
+               <div className="relative overflow-hidden rounded-[2.5rem] group">
+                 <img 
+                   src="https://images.unsplash.com/photo-1557597774-9d2739f85a76?auto=format&fit=crop&q=80&w=600" 
+                   alt="Night Recon" 
+                   className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                   referrerPolicy="no-referrer"
+                 />
+               </div>
+               <div className="relative overflow-hidden rounded-[2.5rem] group">
+                 <img 
+                   src="https://images.unsplash.com/photo-1628348068343-c6a848d2b6dd?auto=format&fit=crop&q=80&w=600" 
+                   alt="Advanced Surveillance" 
+                   className="w-full h-full object-cover grayscale brightness-75 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
+                   referrerPolicy="no-referrer"
+                 />
+               </div>
+             </div>
+           </div>
         </div>
       </section>
 
